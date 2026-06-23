@@ -34,6 +34,13 @@ pub fn update_temporary_password() {
     *TEMPORARY_PASSWORD.write().unwrap() = get_auto_password();
 }
 
+pub fn set_temporary_password(password: String) {
+    if password.is_empty() {
+        return;
+    }
+    *TEMPORARY_PASSWORD.write().unwrap() = password;
+}
+
 // Should only be called in server
 pub fn temporary_password() -> String {
     TEMPORARY_PASSWORD.read().unwrap().clone()
